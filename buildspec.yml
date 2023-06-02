@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      maven: 3.8.5-openjdk-17
+      java: amazoncorretto:17-alpine
       docker: 18
   build:
     commands:
