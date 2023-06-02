@@ -1,0 +1,11 @@
+version: 0.1
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - docker build -t sample .
