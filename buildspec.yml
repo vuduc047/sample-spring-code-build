@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: amazoncorretto:17-alpine
+      java: corretto17
       docker: 19
   build:
     commands:
