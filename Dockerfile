@@ -1,22 +1,13 @@
-FROM openjdk:17-jdk-alpine3.13
-
-ARG BUILD_DATE
-ARG GIT_FULL_BRANCH
-ARG SHORT_COMMIT_HASH
-
-
-LABEL build_date=$BUILD_DATE
-LABEL git_branch=$GIT_FULL_BRANCH
-LABEL git_short_commit_hash=$SHORT_COMMIT_HASH
-
-# Create a group and user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
-#Run as non root user
-USER appuser
-
+# Use a base image that includes Java 17 and Maven
+FROM maven:3.9.0 AS build
 WORKDIR /app
-COPY "./target/*.jar" /app/
+COPY pom.xml .
+COPY src/ ./src/
+RUN mvn clean install
 
-
+# Start a new container with Java 17 and Alpine Linux, with Amazon Corretto
+FROM amazoncorretto:17-alpine
+WORKDIR /app
+COPY --from=build "/app/target/*.jar" /app/
+EXPOSE 6969
 ENTRYPOINT java -jar *.jar
