@@ -1,15 +1,15 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      java: corretto11
-      docker: 19
   build:
     commands:
-      - echo Build started on `date`
-      - mvn clean install
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - docker build -t sample .
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+
+    post_build:
+      commands:
+        - echo Build completed on `date`
+        - echo Pushing the Docker images...
+        - docker push $REPOSITORY_URI:latest
+
