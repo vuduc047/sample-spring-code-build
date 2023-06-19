@@ -1,5 +1,5 @@
 # Use a base image that includes Java 17 and Maven
-FROM maven:3.9.0 AS build
+FROM maven:3.9.1-amazoncorretto-17 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src/ ./src/
