@@ -6,7 +6,7 @@ COPY src/ ./src/
 RUN mvn clean install
 
 # Start a new container with Java 17 and Alpine Linux, with Amazon Corretto
-FROM amazoncorretto:17-alpine
+FROM maven:3.9.0-amazoncorretto-17
 WORKDIR /app
 COPY --from=build "/app/target/*.jar" /app/
 EXPOSE 6969
