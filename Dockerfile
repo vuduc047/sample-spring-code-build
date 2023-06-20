@@ -1,9 +1,10 @@
 # Use a base image that includes Java 17 and Maven
-FROM maven:3.9.0-amazoncorretto-17 AS build
+FROM maven:3.9.0 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src/ ./src/
 RUN mvn clean install
+RUN mvn deploy
 
 # Start a new container with Java 17 and Alpine Linux, with Amazon Corretto
 FROM maven:3.9.0-amazoncorretto-17
