@@ -10,7 +10,7 @@ phases:
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain sample-domain --domain-owner 299558649067 --query authorizationToken --output text`
-      - echo CODEARTIFACT_AUTH_TOKEN
+      - echo $CODEARTIFACT_AUTH_TOKEN
   build:
     commands:
       - echo Building the Docker image...
