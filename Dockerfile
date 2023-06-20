@@ -5,8 +5,9 @@ ENV CODEARTIFACT_AUTH_TOKEN = $CODEARTIFACT_AUTH_TOKEN
 WORKDIR /app
 COPY pom.xml .
 COPY src/ ./src/
+COPY settings.xml .
 RUN mvn clean install
-RUN echo $
+RUN echo $CODEARTIFACT_AUTH_TOKEN
 RUN mvn deploy -s settings.xml
 
 # Start a new container with Java 17 and Alpine Linux, with Amazon Corretto
