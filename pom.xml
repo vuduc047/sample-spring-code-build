@@ -29,6 +29,14 @@
 		</dependency>
 	</dependencies>
 
+	<distributionManagement>
+		<repository>
+			<id>codeartifact</id>
+			<name>codeartifact</name>
+			<url>https://sample-domain-299558649067.d.codeartifact.ap-southeast-1.amazonaws.com/maven/SampleRepo/</url>
+		</repository>
+	</distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>
