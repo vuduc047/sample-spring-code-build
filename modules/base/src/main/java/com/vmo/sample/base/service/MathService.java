@@ -1,11 +1,11 @@
-package com.sample.codebuild.service;
+package com.vmo.sample.base.service;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class MathService {
 
-    public Integer calculate(int a, int b) {
+    public Integer calculate(Integer a, Integer b) {
         return a + b;
     }
 }
